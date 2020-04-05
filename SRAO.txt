@@ -9,4 +9,8 @@
 ## IsLibrary: false
 
 SRAO.xml
+CurrencyTracker.xml
+
 SRAO.lua
+
+CurrencyTracker.lua
