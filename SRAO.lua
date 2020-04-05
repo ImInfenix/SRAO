@@ -11,7 +11,9 @@ function Initialize()
   EVENT_MANAGER:RegisterForEvent(SRAO.name, EVENT_PLAYER_COMBAT_STATE, OnPlayerCombatState)
 
   SRAO.savedVariables = ZO_SavedVars:New("SRAO_SavedVariables", 1, nil, {})
-  RestorePosition()
+  RestoreCombatIndicatorPosition()
+
+  InitializeCurrencyTracker()
 end
 
 function OnAddOnLoaded(event, addonName)
@@ -37,12 +39,12 @@ function OnPlayerCombatState(eventCode, inCombat)
   end
 end
 
-function OnIndicatorMoveStop()
+function OnIndicatorMoveStopCombat()
   SRAO.savedVariables.left = SRAOIndicator:GetLeft()
   SRAO.savedVariables.top = SRAOIndicator:GetTop()
 end
 
-function RestorePosition()
+function RestoreCombatIndicatorPosition()
   local left = SRAO.savedVariables.left
   local top = SRAO.savedVariables.top
 
@@ -52,5 +54,3 @@ end
 
 EVENT_MANAGER:RegisterForEvent(SRAO.name, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
 EVENT_MANAGER:RegisterForEvent(SRAO.name, EVENT_PLAYER_ACTIVATED, OnPlayerActivated)
-
---GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT)
