@@ -8,4 +8,5 @@
 ## OptionalDependsOn:
 ## IsLibrary: false
 
+SRAO.xml
 SRAO.lua
