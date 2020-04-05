@@ -1,4 +1,4 @@
-## Title: |ccc0000So|cff0000me |cff3300Random |cff9933Add|cff9966On11
+## Title: |ccc0000So|cff0000me |cff3300Random |cff9933Add|cff9966On
 ## Description: Learning how to create some AddOn
 ## Author: |cff6600Infenix
 ## APIVersion: 100030
