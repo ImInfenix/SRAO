@@ -1,19 +1,19 @@
 <GuiXml>
   <Controls>
     <TopLevelControl name="GUI_EventTicketsWarning" mouseEnabled="true" movable="true" clampedToScreen="true">
-      <Dimensions x="200" y="25" />
-      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
+      <Dimensions x="530" y="40" />
+      <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="50" />
 
       <OnMoveStop>
         OnIndicatorMoveStopEventTicketsWarning()
       </OnMoveStop>
 
       <Controls>
-        <Label name="$(parent)Label" width="200" height="25" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
-            wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="/!\ Remember to use your Event Tickets /!\">
-          <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
+        <Label name="$(parent)Label" width="530" height="40" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
+            wrapMode="TRUNCATE" verticalAlignment="CENTER" horizontalAlignment="CENTERCENTER" text="/!\ Remember to use your Event Tickets /!\">
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
         </Label>
       </Controls>
-  </TopLevelControl>
+    </TopLevelControl>
   </Controls>
 </GuiXml>
