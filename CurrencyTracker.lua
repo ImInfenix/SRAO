@@ -1,36 +1,30 @@
--- Currency Tracking File
+CurrencyTracker = {}
 
-function InitializeCurrencyTracker()
+CurrencyTracker.name = "CurrencyTracker"
+CurrencyTracker.coloredName = "|ccc0000Curr|cff3300ency |cff9933Trac|cff9966ker|r"
 
-  --Event ticket warning restore init check
-  ShowEventTicketsWarning(GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= 10)
+isLoaded = false
 
-  --Event tickets warning restore
-  local left = SRAO.savedVariables.EventTicketsWarningLeft
-  local top = SRAO.savedVariables.EventTicketsWarningTop
+function Initialize()
+  CurrencyTracker.savedVariables = ZO_SavedVars:New("CurrencyTracker_SavedVariables", 1, nil, {})
 
-  SRAOEventTicketsWarning:ClearAnchors()
-  SRAOEventTicketsWarning:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
+  InitializeCurrencyTracker()
 end
 
-function OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
-  if(currencyType == CURT_EVENT_TICKETS) then
-    d("[SRAO] New event tickets amount : " .. newAmount)
+function OnAddOnLoaded(event, addonName)
+  if addonName ~= CurrencyTracker.name or isLoaded then
+    return
+  end
 
-    --Detect if event tickets quantity >= 10
-    ShowEventTicketsWarning(newAmount >= 10)
+  Initialize()
+  isLoaded = true
+end
+
+function OnPlayerActivated(eventCode)
+  if(isLoaded) then
+    d(CurrencyTracker.coloredName .. " addon loaded.")
   end
 end
 
-function ShowEventTicketsWarning(show)
-  SRAOEventTicketsWarning:SetHidden(not show)
-end
-
-function OnIndicatorMoveStopEventTicketsWarning()
-  SRAO.savedVariables.EventTicketsWarningLeft = SRAOEventTicketsWarning:GetLeft()
-  SRAO.savedVariables.EventTicketsWarningTop = SRAOEventTicketsWarning:GetTop()
-end
-
-EVENT_MANAGER:RegisterForEvent(SRAO.name, EVENT_CURRENCY_UPDATE, OnCurrencyUpdate)
-
---GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT)
+EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
+EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_PLAYER_ACTIVATED, OnPlayerActivated)

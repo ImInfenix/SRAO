@@ -1,6 +1,6 @@
 <GuiXml>
   <Controls>
-    <TopLevelControl name="SRAOEventTicketsWarning" mouseEnabled="true" movable="true" clampedToScreen="true">
+    <TopLevelControl name="GUI_EventTicketsWarning" mouseEnabled="true" movable="true" clampedToScreen="true">
       <Dimensions x="200" y="25" />
       <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
 
