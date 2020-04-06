@@ -4,7 +4,7 @@
 ## APIVersion: 100030
 ## AddOnVersion: 1.0
 ## SavedVariables: CurrencyTracker_SavedVariables
-## DependsOn:
+## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn:
 
 EventTickets/EventTickets.xml
