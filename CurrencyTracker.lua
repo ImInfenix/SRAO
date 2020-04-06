@@ -3,11 +3,11 @@ CurrencyTracker = {}
 CurrencyTracker.name = "CurrencyTracker"
 CurrencyTracker.coloredName = "|ccc0000Curr|cff3300ency |cff9933Trac|cff9966ker|r"
 
-isLoaded = false
+local isLoaded = false
 
 function Initialize()
-  CurrencyTracker.savedVariables = ZO_SavedVars:New("CurrencyTracker_SavedVariables", 1, nil, {})
-
+  CurrencyTracker.savedVariables = ZO_SavedVars:NewAccountWide("CurrencyTracker_SavedVariables", 1, nil, {})
+  CurrencyTracker.displayAddonLoadedMessage = true
   InitializeCurrencyTracker()
 end
 
@@ -21,8 +21,9 @@ function OnAddOnLoaded(event, addonName)
 end
 
 function OnPlayerActivated(eventCode)
-  if(isLoaded) then
+  if(isLoaded and CurrencyTracker.displayAddonLoadedMessage) then
     d(CurrencyTracker.coloredName .. " addon loaded.")
+    CurrencyTracker.displayAddonLoadedMessage = false
   end
 end
 
