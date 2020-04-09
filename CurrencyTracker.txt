@@ -11,4 +11,5 @@ EventTickets/EventTickets.xml
 
 CurrencyTracker.lua
 
+Menu.lua
 EventTickets/EventTickets.lua
