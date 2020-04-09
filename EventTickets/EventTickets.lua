@@ -1,7 +1,7 @@
--- Currency Tracking File
+--Event Tickets tracking file
 local EventTickets = {}
 
-function InitializeCurrencyTracker()
+function InitializeEventTickets()
 
   --Event ticket warning restore init check
   EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= 10)

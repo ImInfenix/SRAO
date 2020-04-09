@@ -11,8 +11,13 @@ local isLoaded = false
 
 function Initialize()
   CurrencyTracker.savedVariables = ZO_SavedVars:NewAccountWide("CurrencyTracker_SavedVariables", 1, nil, {})
-  CurrencyTracker.displayAddonLoadedMessage = true
-  InitializeCurrencyTracker()
+  CurrencyTracker.displayAddonLoadedMessage = CurrencyTracker.savedVariables.displayAddonLoadedMessage
+
+  --EventTickets Initializing
+  InitializeEventTickets()
+
+  --LibAddonMenu-2.0 Initializing
+  InitializeLAM()
 end
 
 function OnAddOnLoaded(event, addonName)
