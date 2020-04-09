@@ -1,7 +1,11 @@
 CurrencyTracker = {}
 
+--AddOn variables
 CurrencyTracker.name = "CurrencyTracker"
 CurrencyTracker.coloredName = "|ccc0000Curr|cff3300ency |cff9933Trac|cff9966ker|r"
+CurrencyTracker.author = "|cff6600Infenix|r"
+CurrencyTracker.version = "1.0"
+CurrencyTracker.website = "https://github.com/ImInfenix/CurrencyTracker"
 
 local isLoaded = false
 
