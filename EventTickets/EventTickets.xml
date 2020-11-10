@@ -9,31 +9,26 @@
       </OnMoveStop>
 
       <Controls>
-        <!--
-        <Texture textureFile="/esoui/art/buttons/checkbox_unchecked.dds">
-            <Dimensions x="600" y="80" />
-        </Texture>
-        !-->
 
         <Texture name="$(parent)A" textureFile="esoui\art\progression\abilityframe_empty.dds" alpha="1">
-          <Dimensions x="48" y="48" />
-          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" offsetX="0" offsetY="0" />
+          <Dimensions x="72" y="48" />
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
           <TextureCoords left="0" right="1" top="0" bottom="1" />
         </Texture>
 
         <Texture name="$(parent)B" textureFile="esoui\art\actionbar\abilityframe64_up.dds" alpha="1">
-          <Dimensions x="32" y="32" />
-          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" offsetX="0" offsetY="0" />
+          <Dimensions x="48" y="32" />
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
           <TextureCoords left="0" right="1" top="0" bottom="1" />
         </Texture>
 
-        <!-- <Label name="$(parent)Label" width="8" height="8" font="ZoFontWinH1" inheritAlpha="true" color="FFFFFF"
-            wrapMode="TEXT_WRAP_MODE_TRUNCATE" verticalAlignment="CENTER" horizontalAlignment="CENTERCENTER" text="12456">
-          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
-        </Label> -->
+        <Texture name="$(parent)C" textureFile="/esoui/art/currency/currency_eventticket.dds" alpha="1">
+          <Dimensions x="24" y="24" />
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="LEFT" offsetX="15"/>
+        </Texture>
 
         <Label name="$(parent)Text" text="12" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_HIGHLIGHT" horizontalAlignment="CENTER" verticalAlignment="CENTER" font="ZoFontGame" resizeToFitDescendents="true">
-            <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="CENTER"/>
+            <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="LEFT" offsetX="35"/>
         </Label>
       </Controls>
     </TopLevelControl>
