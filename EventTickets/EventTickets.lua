@@ -1,22 +1,33 @@
 --Event Tickets tracking file
 local EventTickets = {}
+
 EventTickets.amountTreshold = 10
 
 function CurrencyTracker.InitializeEventTickets()
 
+  if(not CurrencyTracker.savedVariables.eventTickets.tracking) then
+    GUI_EventTicketsWarning:SetHidden(true)
+    return
+  end
+
   --Event ticket warning restore init check
   EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= EventTickets.amountTreshold)
-  CurrencyTracker.ShowEventTicketsWarning(EventTickets.displayWarning)
 
   --Debug
   -- EventTickets.displayWarning  = true
 
+  CurrencyTracker.ShowEventTicketsWarning(EventTickets.displayWarning)
+
   --Event tickets warning restore
-  local left = CurrencyTracker.savedVariables.EventTicketsWarningLeft
-  local top = CurrencyTracker.savedVariables.EventTicketsWarningTop
+  local left = CurrencyTracker.savedVariables.eventTickets.GUILeft
+  local top = CurrencyTracker.savedVariables.eventTickets.GUITop
 
   GUI_EventTicketsWarning:ClearAnchors()
   GUI_EventTicketsWarning:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
+
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, CurrencyTracker.LayerPopped)
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_PUSHED, CurrencyTracker.LayerPushed)
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_CURRENCY_UPDATE, CurrencyTracker.OnCurrencyUpdate)
 end
 
 function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
@@ -36,8 +47,8 @@ function CurrencyTracker.ShowEventTicketsWarning(show)
 end
 
 function CurrencyTracker.OnIndicatorMoveStopEventTicketsWarning()
-  CurrencyTracker.savedVariables.EventTicketsWarningLeft = GUI_EventTicketsWarning:GetLeft()
-  CurrencyTracker.savedVariables.EventTicketsWarningTop = GUI_EventTicketsWarning:GetTop()
+  CurrencyTracker.savedVariables.eventTickets.GUILeft = GUI_EventTicketsWarning:GetLeft()
+  CurrencyTracker.savedVariables.eventTickets.GUITop = GUI_EventTicketsWarning:GetTop()
 end
 
 function CurrencyTracker.LayerPopped(eventCode, layerIndex, activeLayerIndex)
@@ -49,7 +60,3 @@ function CurrencyTracker.LayerPushed(eventCode, layerIndex, activeLayerIndex)
   --Hides warning when opening any menu
   CurrencyTracker.ShowEventTicketsWarning(activeLayerIndex == 2)
 end
-
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, CurrencyTracker.LayerPopped)
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_PUSHED, CurrencyTracker.LayerPushed)
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_CURRENCY_UPDATE, CurrencyTracker.OnCurrencyUpdate)

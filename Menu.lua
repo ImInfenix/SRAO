@@ -4,8 +4,15 @@ local LAM = LibAddonMenu2
 function CurrencyTracker.InitializeLAM()
 	--LibAddonMenu-2.0 Setup
 	local saveData = CurrencyTracker.savedVariables
+
 	--Test if addon is launched for first time for each value picked by user
 	if saveData.displayAddonLoadedMessage == nil then saveData.displayAddonLoadedMessage = true end
+	if saveData.eventTickets == nil then
+		saveData.eventTickets = {}
+		saveData.eventTickets.tracking = true
+		saveData.eventTickets.GUILeft = 1800
+		saveData.eventTickets.GUITop = 400
+	end
 
 	local settingsPanel
 	local settingsPanelName = CurrencyTracker.name .. "SettingsPanel"
@@ -32,7 +39,15 @@ function CurrencyTracker.InitializeLAM()
 		},
 		{
 			type = "header",
-			name = "general mais moins quand meme"
+			name = "Event tickets"
+		},
+		{
+			type = "checkbox",
+			name = "Enable event tickets tracking",
+			getFunc = function() return saveData.eventTickets.tracking end,
+			setFunc = function(value)
+						saveData.eventTickets.tracking = value
+			end
 		}
 	}
 
