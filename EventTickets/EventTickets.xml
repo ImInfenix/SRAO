@@ -1,17 +1,39 @@
 <GuiXml>
   <Controls>
     <TopLevelControl name="GUI_EventTicketsWarning" mouseEnabled="true" movable="true" clampedToScreen="true">
-      <Dimensions x="530" y="40" />
+      <Dimensions x="48" y="48" />
       <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="50" />
 
       <OnMoveStop>
-        OnIndicatorMoveStopEventTicketsWarning()
+        CurrencyTracker.OnIndicatorMoveStopEventTicketsWarning()
       </OnMoveStop>
 
       <Controls>
-        <Label name="$(parent)Label" width="530" height="40" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
-            wrapMode="TRUNCATE" verticalAlignment="CENTER" horizontalAlignment="CENTERCENTER" text="/!\ Remember to use your Event Tickets /!\">
+        <!--
+        <Texture textureFile="/esoui/art/buttons/checkbox_unchecked.dds">
+            <Dimensions x="600" y="80" />
+        </Texture>
+        !-->
+
+        <Texture name="$(parent)A" textureFile="esoui\art\progression\abilityframe_empty.dds" alpha="1">
+          <Dimensions x="48" y="48" />
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" offsetX="0" offsetY="0" />
+          <TextureCoords left="0" right="1" top="0" bottom="1" />
+        </Texture>
+
+        <Texture name="$(parent)B" textureFile="esoui\art\actionbar\abilityframe64_up.dds" alpha="1">
+          <Dimensions x="32" y="32" />
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" offsetX="0" offsetY="0" />
+          <TextureCoords left="0" right="1" top="0" bottom="1" />
+        </Texture>
+
+        <!-- <Label name="$(parent)Label" width="8" height="8" font="ZoFontWinH1" inheritAlpha="true" color="FFFFFF"
+            wrapMode="TEXT_WRAP_MODE_TRUNCATE" verticalAlignment="CENTER" horizontalAlignment="CENTERCENTER" text="12456">
           <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
+        </Label> -->
+
+        <Label name="$(parent)Text" text="12" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_HIGHLIGHT" horizontalAlignment="CENTER" verticalAlignment="CENTER" font="ZoFontGame" resizeToFitDescendents="true">
+            <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="CENTER"/>
         </Label>
       </Controls>
     </TopLevelControl>

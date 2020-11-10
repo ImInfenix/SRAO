@@ -27,8 +27,12 @@ function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocat
   end
 end
 
-function ShowEventTicketsWarning(show)
-  GUI_EventTicketsWarning:SetHidden(not show or not EventTickets.displayWarning)
+function CurrencyTracker.ShowEventTicketsWarning(show)
+  local display = not show or not EventTickets.displayWarning
+  GUI_EventTicketsWarning:SetHidden(display)
+  if(display) then
+    GUI_EventTicketsWarningText:SetText(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT)
+  end
 end
 
 function CurrencyTracker.OnIndicatorMoveStopEventTicketsWarning()
