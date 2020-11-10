@@ -1,7 +1,7 @@
 --Addon Settings Menu File
 local LAM = LibAddonMenu2
 
-function InitializeLAM()
+function CurrencyTracker.InitializeLAM()
 	--LibAddonMenu-2.0 Setup
 	local saveData = CurrencyTracker.savedVariables
 	--Test if addon is launched for first time for each value picked by user
@@ -16,6 +16,7 @@ function InitializeLAM()
 	  version = CurrencyTracker.version,
 	  website = CurrencyTracker.website
 	}
+
 	local settingsOptionsData = {
 		{
 			type = "header",

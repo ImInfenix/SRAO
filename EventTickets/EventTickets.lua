@@ -1,11 +1,15 @@
 --Event Tickets tracking file
 local EventTickets = {}
+EventTickets.amountTreshold = 10
 
-function InitializeEventTickets()
+function CurrencyTracker.InitializeEventTickets()
 
   --Event ticket warning restore init check
-  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= 10)
-  ShowEventTicketsWarning(EventTickets.displayWarning)
+  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= EventTickets.amountTreshold)
+  CurrencyTracker.ShowEventTicketsWarning(EventTickets.displayWarning)
+
+  --Debug
+  -- EventTickets.displayWarning  = true
 
   --Event tickets warning restore
   local left = CurrencyTracker.savedVariables.EventTicketsWarningLeft
@@ -15,11 +19,11 @@ function InitializeEventTickets()
   GUI_EventTicketsWarning:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
 
-function OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
+function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
   if(currencyType == CURT_EVENT_TICKETS) then
-    --Detect if event tickets quantity >= 10
-    EventTickets.displayWarning = (newAmount >= 10)
-    ShowEventTicketsWarning(true)
+    --Detects if event tickets quantity >= 10
+    EventTickets.displayWarning = (newAmount >= EventTickets.amountTreshold)
+    CurrencyTracker.ShowEventTicketsWarning(true)
   end
 end
 
@@ -27,21 +31,21 @@ function ShowEventTicketsWarning(show)
   GUI_EventTicketsWarning:SetHidden(not show or not EventTickets.displayWarning)
 end
 
-function OnIndicatorMoveStopEventTicketsWarning()
+function CurrencyTracker.OnIndicatorMoveStopEventTicketsWarning()
   CurrencyTracker.savedVariables.EventTicketsWarningLeft = GUI_EventTicketsWarning:GetLeft()
   CurrencyTracker.savedVariables.EventTicketsWarningTop = GUI_EventTicketsWarning:GetTop()
 end
 
-function layerPopped(eventCode, layerIndex, activeLayerIndex)
-  --Show Warning when going back to game
-  ShowEventTicketsWarning(activeLayerIndex == 2)
+function CurrencyTracker.LayerPopped(eventCode, layerIndex, activeLayerIndex)
+  --Shows warning when going back to game
+  CurrencyTracker.ShowEventTicketsWarning(activeLayerIndex == 2)
 end
 
-function layerPushed(eventCode, layerIndex, activeLayerIndex)
-  --Hide Warning when opening any menu
-  ShowEventTicketsWarning(activeLayerIndex == 2)
+function CurrencyTracker.LayerPushed(eventCode, layerIndex, activeLayerIndex)
+  --Hides warning when opening any menu
+  CurrencyTracker.ShowEventTicketsWarning(activeLayerIndex == 2)
 end
 
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, layerPopped)
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_PUSHED, layerPushed)
-EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_CURRENCY_UPDATE, OnCurrencyUpdate)
+EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, CurrencyTracker.LayerPopped)
+EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_PUSHED, CurrencyTracker.LayerPushed)
+EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_CURRENCY_UPDATE, CurrencyTracker.OnCurrencyUpdate)
