@@ -8,7 +8,7 @@ function CurrencyTracker.InitializeEventTickets()
     return
   end
 
-  CurrencyTracker.OnAmountTresholdChanged()
+  CurrencyTracker.OnAmountThresholdChanged()
 
   CurrencyTracker.ShowEventTicketsWarning(EventTickets.displayWarning)
 
@@ -27,14 +27,14 @@ end
 function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
   if(currencyType == CURT_EVENT_TICKETS) then
     --Detects if event tickets quantity >= 10
-    EventTickets.displayWarning = (newAmount >= CurrencyTracker.savedVariables.eventTickets.amountTreshold)
+    EventTickets.displayWarning = (newAmount >= CurrencyTracker.savedVariables.eventTickets.amountThreshold)
     CurrencyTracker.ShowEventTicketsWarning(true)
   end
 end
 
-function CurrencyTracker.OnAmountTresholdChanged()
+function CurrencyTracker.OnAmountThresholdChanged()
   --Update the message along to the treshold
-  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= CurrencyTracker.savedVariables.eventTickets.amountTreshold )
+  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= CurrencyTracker.savedVariables.eventTickets.amountThreshold )
 end
 
 function CurrencyTracker.ShowEventTicketsWarning(show)

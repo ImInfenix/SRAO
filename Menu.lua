@@ -13,7 +13,7 @@ function CurrencyTracker.InitializeLAM()
 	if saveData.eventTickets.GUILeft == nil then saveData.eventTickets.GUILeft = 1800 end
 	if saveData.eventTickets.GUITop == nil then saveData.eventTickets.GUITop = 400 end
 	if saveData.eventTickets.alwaysDisplay == nil then saveData.eventTickets.alwaysDisplay = false end
-	if saveData.eventTickets.amountTreshold == nil then saveData.eventTickets.amountTreshold = 10 end
+	if saveData.eventTickets.amountThreshold == nil then saveData.eventTickets.amountThreshold = 10 end
 
 	local settingsPanel
 	local settingsPanelName = CurrencyTracker.name .. "SettingsPanel"
@@ -63,10 +63,10 @@ function CurrencyTracker.InitializeLAM()
       name = "Amount of tickets to trigger display",
       min = 0,
       max = 12,
-      getFunc = function() return saveData.eventTickets.amountTreshold end,
+      getFunc = function() return saveData.eventTickets.amountThreshold end,
       setFunc = function(value)
-        saveData.eventTickets.amountTreshold = value
-				CurrencyTracker.OnAmountTresholdChanged()
+        saveData.eventTickets.amountThreshold = value
+				CurrencyTracker.OnAmountThresholdChanged()
       end
     }
 	}
