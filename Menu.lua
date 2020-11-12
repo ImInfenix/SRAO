@@ -7,12 +7,13 @@ function CurrencyTracker.InitializeLAM()
 
 	--Test if addon is launched for first time for each value picked by user
 	if saveData.displayAddonLoadedMessage == nil then saveData.displayAddonLoadedMessage = true end
-	if saveData.eventTickets == nil then
-		saveData.eventTickets = {}
-		saveData.eventTickets.tracking = true
-		saveData.eventTickets.GUILeft = 1800
-		saveData.eventTickets.GUITop = 400
-	end
+
+	if saveData.eventTickets == nil then saveData.eventTickets = {} end
+	if saveData.eventTickets.tracking == nil then saveData.eventTickets.tracking = true end
+	if saveData.eventTickets.GUILeft == nil then saveData.eventTickets.GUILeft = 1800 end
+	if saveData.eventTickets.GUITop == nil then saveData.eventTickets.GUITop = 400 end
+	if saveData.eventTickets.alwaysDisplay == nil then saveData.eventTickets.alwaysDisplay = false end
+	if saveData.eventTickets.amountTreshold == nil then saveData.eventTickets.amountTreshold = 10 end
 
 	local settingsPanel
 	local settingsPanelName = CurrencyTracker.name .. "SettingsPanel"
@@ -48,7 +49,26 @@ function CurrencyTracker.InitializeLAM()
 			setFunc = function(value)
 						saveData.eventTickets.tracking = value
 			end
-		}
+		},
+		{
+			type = "checkbox",
+			name = "Hide warning when amount is under treshold",
+			getFunc = function() return not saveData.eventTickets.alwaysDisplay end,
+			setFunc = function(value)
+						saveData.eventTickets.alwaysDisplay = not value
+			end
+		},
+    {
+      type = "slider",
+      name = "Amount of tickets to trigger display",
+      min = 0,
+      max = 12,
+      getFunc = function() return saveData.eventTickets.amountTreshold end,
+      setFunc = function(value)
+        saveData.eventTickets.amountTreshold = value
+				CurrencyTracker.OnAmountTresholdChanged()
+      end
+    }
 	}
 
 	settingsPanel = LAM:RegisterAddonPanel(settingsPanelName, settingsPanelData)

@@ -1,8 +1,6 @@
 --Event Tickets tracking file
 local EventTickets = {}
 
-EventTickets.amountTreshold = 10
-
 function CurrencyTracker.InitializeEventTickets()
 
   if(not CurrencyTracker.savedVariables.eventTickets.tracking) then
@@ -10,11 +8,7 @@ function CurrencyTracker.InitializeEventTickets()
     return
   end
 
-  --Event ticket warning restore init check
-  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= EventTickets.amountTreshold)
-
-  --Debug
-  -- EventTickets.displayWarning  = true
+  CurrencyTracker.OnAmountTresholdChanged()
 
   CurrencyTracker.ShowEventTicketsWarning(EventTickets.displayWarning)
 
@@ -33,14 +27,19 @@ end
 function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
   if(currencyType == CURT_EVENT_TICKETS) then
     --Detects if event tickets quantity >= 10
-    EventTickets.displayWarning = (newAmount >= EventTickets.amountTreshold)
+    EventTickets.displayWarning = (newAmount >= CurrencyTracker.savedVariables.eventTickets.amountTreshold)
     CurrencyTracker.ShowEventTicketsWarning(true)
   end
 end
 
+function CurrencyTracker.OnAmountTresholdChanged()
+  --Update the message along to the treshold
+  EventTickets.displayWarning = (GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT) >= CurrencyTracker.savedVariables.eventTickets.amountTreshold )
+end
+
 function CurrencyTracker.ShowEventTicketsWarning(show)
-  local display = not show or not EventTickets.displayWarning
-  GUI_EventTicketsWarning:SetHidden(display)
+  local display = show and (EventTickets.displayWarning or CurrencyTracker.savedVariables.eventTickets.alwaysDisplay)
+  GUI_EventTicketsWarning:SetHidden(not display)
   if(display) then
     GUI_EventTicketsWarningText:SetText(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT)
   end
