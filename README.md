@@ -4,4 +4,4 @@ AddOn for Elder Scrolls Online
 Helps you with your currencies
 
 Current functionalities :
-  - Warns player if event tickets >= 10
+  - Warns players when event tickets reach a chosen amount (default 10)
