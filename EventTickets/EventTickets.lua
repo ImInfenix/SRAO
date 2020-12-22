@@ -41,7 +41,7 @@ function CurrencyTracker.ShowEventTicketsWarning(show)
   local display = show and (EventTickets.displayWarning or CurrencyTracker.savedVariables.eventTickets.alwaysDisplay)
   GUI_EventTicketsWarning:SetHidden(not display)
   if(display) then
-    GUI_EventTicketsWarningText:SetText(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT)
+    GUI_EventTicketsWarningText:SetText(GetCurrencyAmount(CURT_EVENT_TICKETS, CURRENCY_LOCATION_ACCOUNT))
   end
 end
 
