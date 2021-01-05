@@ -15,7 +15,7 @@ function CurrencyTracker.Initialize()
   CurrencyTracker.InitializeLAM()
 
   --EventTickets Initializing
-  CurrencyTracker.InitializeEventTickets()
+  CurrencyTracker.EventTickets.Initialize()
 
   EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_PLAYER_ACTIVATED, CurrencyTracker.OnPlayerActivated)
 end

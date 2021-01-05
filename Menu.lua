@@ -66,7 +66,7 @@ function CurrencyTracker.InitializeLAM()
       getFunc = function() return saveData.eventTickets.amountThreshold end,
       setFunc = function(value)
         saveData.eventTickets.amountThreshold = value
-				CurrencyTracker.OnAmountThresholdChanged()
+				CurrencyTracker.EventTickets.OnAmountThresholdChanged()
       end
     }
 	}
