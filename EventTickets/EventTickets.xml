@@ -13,13 +13,11 @@
         <Texture name="$(parent)A" textureFile="esoui\art\progression\abilityframe_empty.dds" alpha="1">
           <Dimensions x="72" y="48" />
           <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
-          <TextureCoords left="0" right="1" top="0" bottom="1" />
         </Texture>
 
         <Texture name="$(parent)B" textureFile="esoui\art\actionbar\abilityframe64_up.dds" alpha="1">
           <Dimensions x="48" y="32" />
           <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
-          <TextureCoords left="0" right="1" top="0" bottom="1" />
         </Texture>
 
         <Texture name="$(parent)C" textureFile="/esoui/art/currency/currency_eventticket.dds" alpha="1">
