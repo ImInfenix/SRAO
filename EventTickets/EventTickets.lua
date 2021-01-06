@@ -26,7 +26,7 @@ end
 
 function CurrencyTracker.EventTickets.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
   if(currencyType == CURT_EVENT_TICKETS) then
-    --Detects if event tickets quantity >= 10
+    --Detects if event tickets quantity >= threshold
     CurrencyTracker.EventTickets.displayWarning = (newAmount >= CurrencyTracker.savedVariables.eventTickets.amountThreshold)
     CurrencyTracker.EventTickets.ShowEventTicketsWarning(true)
   end
