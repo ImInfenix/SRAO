@@ -21,21 +21,23 @@ function CurrencyTracker.WritVouchers.Initialize()
 end
 
 function CurrencyTracker.WritVouchers.OnCurrencyUpdate(currencyLocation, newAmount, oldAmount, reason)
-  --Detects if writ vouchers quantity >= threshold
-  CurrencyTracker.WritVouchers.displayWarning = (newAmount >= CurrencyTracker.savedVariables.writVouchers.amountThreshold)
-  CurrencyTracker.WritVouchers.ShowWritVouchersWarning(true)
+  if(currencyLocation == CURRENCY_LOCATION_CHARACTER) then
+    --Detects if writ vouchers quantity >= threshold
+    CurrencyTracker.WritVouchers.displayWarning = (newAmount >= CurrencyTracker.savedVariables.writVouchers.amountThreshold)
+    CurrencyTracker.WritVouchers.ShowWritVouchersWarning(true)
+  end
 end
 
 function CurrencyTracker.WritVouchers.OnAmountThresholdChanged()
   --Update the message along to the treshold
-  CurrencyTracker.WritVouchers.displayWarning = (GetCurrencyAmount(CURT_WRIT_VOUCHERS, CURRENCY_LOCATION_ACCOUNT) >= CurrencyTracker.savedVariables.writVouchers.amountThreshold )
+  CurrencyTracker.WritVouchers.displayWarning = (GetCurrencyAmount(CURT_WRIT_VOUCHERS, CURRENCY_LOCATION_CHARACTER) >= CurrencyTracker.savedVariables.writVouchers.amountThreshold )
 end
 
 function CurrencyTracker.WritVouchers.ShowWritVouchersWarning(show)
   local display = show and (CurrencyTracker.WritVouchers.displayWarning or CurrencyTracker.savedVariables.writVouchers.alwaysDisplay)
   GUI_WritVouchersWarning:SetHidden(not display)
   if(display) then
-    GUI_WritVouchersWarningText:SetText(GetCurrencyAmount(CURT_WRIT_VOUCHERS, CURRENCY_LOCATION_CHARACTER       ))
+    GUI_WritVouchersWarningText:SetText(GetCurrencyAmount(CURT_WRIT_VOUCHERS, CURRENCY_LOCATION_CHARACTER))
   end
 end
 
