@@ -15,6 +15,13 @@ function CurrencyTracker.InitializeLAM()
 	if saveData.eventTickets.alwaysDisplay == nil then saveData.eventTickets.alwaysDisplay = false end
 	if saveData.eventTickets.amountThreshold == nil then saveData.eventTickets.amountThreshold = 10 end
 
+	if saveData.writVouchers == nil then saveData.writVouchers = {} end
+	if saveData.writVouchers.tracking == nil then saveData.writVouchers.tracking = true end
+	if saveData.writVouchers.GUILeft == nil then saveData.writVouchers.GUILeft = 1800 end
+	if saveData.writVouchers.GUITop == nil then saveData.writVouchers.GUITop = 450 end
+	if saveData.writVouchers.alwaysDisplay == nil then saveData.writVouchers.alwaysDisplay = false end
+	if saveData.writVouchers.amountThreshold == nil then saveData.writVouchers.amountThreshold = 200 end
+
 	local settingsPanel
 	local settingsPanelName = CurrencyTracker.name .. "SettingsPanel"
 	local settingsPanelData = {
@@ -60,13 +67,44 @@ function CurrencyTracker.InitializeLAM()
 		},
     {
       type = "slider",
-      name = "Amount of tickets to trigger display",
+      name = "Amount required to trigger display",
       min = 0,
       max = 12,
       getFunc = function() return saveData.eventTickets.amountThreshold end,
       setFunc = function(value)
         saveData.eventTickets.amountThreshold = value
 				CurrencyTracker.EventTickets.OnAmountThresholdChanged()
+      end
+    },
+		{
+			type = "header",
+			name = "Writ vouchers"
+		},
+		{
+			type = "checkbox",
+			name = "Enable writ vouchers tracking",
+			getFunc = function() return saveData.writVouchers.tracking end,
+			setFunc = function(value)
+						saveData.writVouchers.tracking = value
+			end
+		},
+		{
+			type = "checkbox",
+			name = "Hide warning when amount is under treshold",
+			getFunc = function() return not saveData.writVouchers.alwaysDisplay end,
+			setFunc = function(value)
+						saveData.writVouchers.alwaysDisplay = not value
+			end
+		},
+    {
+      type = "slider",
+      name = "Amount required to trigger display",
+      min = 0,
+      max = 10000,
+      getFunc = function() return saveData.writVouchers.amountThreshold end,
+      setFunc = function(value)
+        saveData.writVouchers.amountThreshold = value
+				CurrencyTracker.WritVouchers.OnAmountThresholdChanged()
       end
     }
 	}

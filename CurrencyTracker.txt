@@ -8,8 +8,10 @@
 ## OptionalDependsOn:
 
 EventTickets/EventTickets.xml
+WritVouchers/WritVouchers.xml
 
 CurrencyTracker.lua
 
 Menu.lua
 EventTickets/EventTickets.lua
+WritVouchers/WritVouchers.lua

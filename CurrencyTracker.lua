@@ -17,6 +17,9 @@ function CurrencyTracker.Initialize()
   --EventTickets Initializing
   CurrencyTracker.EventTickets.Initialize()
 
+  --WritVouchers Initializing
+  CurrencyTracker.WritVouchers.Initialize()
+
   EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_PLAYER_ACTIVATED, CurrencyTracker.OnPlayerActivated)
 
   EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, CurrencyTracker.LayerPopped)
@@ -50,16 +53,21 @@ function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocat
   if(currencyType == CURT_EVENT_TICKETS) then
     CurrencyTracker.EventTickets.OnCurrencyUpdate(currencyLocation, newAmount, oldAmount, reason)
   end
+  if(currencyType == CURT_WRIT_VOUCHERS) then
+    CurrencyTracker.WritVouchers.OnCurrencyUpdate(currencyLocation, newAmount, oldAmount, reason)
+  end
 end
 
 function CurrencyTracker.LayerPopped(eventCode, layerIndex, activeLayerIndex)
   --Shows warning when going back to game
   CurrencyTracker.EventTickets.ShowEventTicketsWarning(activeLayerIndex == 2)
+  CurrencyTracker.WritVouchers.ShowWritVouchersWarning(activeLayerIndex == 2)
 end
 
 function CurrencyTracker.LayerPushed(eventCode, layerIndex, activeLayerIndex)
   --Hides warning when opening any menu
   CurrencyTracker.EventTickets.ShowEventTicketsWarning(activeLayerIndex == 2)
+  CurrencyTracker.WritVouchers.ShowWritVouchersWarning(activeLayerIndex == 2)
 end
 
 EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ADD_ON_LOADED, CurrencyTracker.OnAddOnLoaded)
