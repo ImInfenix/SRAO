@@ -18,6 +18,10 @@ function CurrencyTracker.Initialize()
   CurrencyTracker.EventTickets.Initialize()
 
   EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_PLAYER_ACTIVATED, CurrencyTracker.OnPlayerActivated)
+
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_POPPED, CurrencyTracker.LayerPopped)
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ACTION_LAYER_PUSHED, CurrencyTracker.LayerPushed)
+  EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_CURRENCY_UPDATE, CurrencyTracker.OnCurrencyUpdate)
 end
 
 function CurrencyTracker.OnAddOnLoaded(eventCode, addonName)
@@ -40,6 +44,22 @@ function CurrencyTracker.OnPlayerActivated(eventCode)
     d(CurrencyTracker.coloredName .. " addon loaded.")
     CurrencyTracker.displayAddonLoadedMessage = false
   end
+end
+
+function CurrencyTracker.OnCurrencyUpdate(eventCode, currencyType, currencyLocation, newAmount, oldAmount, reason)
+  if(currencyType == CURT_EVENT_TICKETS) then
+    CurrencyTracker.EventTickets.OnCurrencyUpdate(currencyLocation, newAmount, oldAmount, reason)
+  end
+end
+
+function CurrencyTracker.LayerPopped(eventCode, layerIndex, activeLayerIndex)
+  --Shows warning when going back to game
+  CurrencyTracker.EventTickets.ShowEventTicketsWarning(activeLayerIndex == 2)
+end
+
+function CurrencyTracker.LayerPushed(eventCode, layerIndex, activeLayerIndex)
+  --Hides warning when opening any menu
+  CurrencyTracker.EventTickets.ShowEventTicketsWarning(activeLayerIndex == 2)
 end
 
 EVENT_MANAGER:RegisterForEvent(CurrencyTracker.name, EVENT_ADD_ON_LOADED, CurrencyTracker.OnAddOnLoaded)
