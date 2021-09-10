@@ -2,7 +2,7 @@
 ## Description: Helps you to manage your currencies
 ## Author: |cff6600Infenix
 ## APIVersion: 101031
-## AddOnVersion: 1.0.4
+## AddOnVersion: 1.0.5
 ## SavedVariables: CurrencyTracker_SavedVariables
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn:
