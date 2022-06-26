@@ -1,8 +1,8 @@
 ## Title: |ccc0000Curr|cff3300ency |cff9933Trac|cff9966ker
 ## Description: Helps you to manage your currencies
 ## Author: |cff6600Infenix
-## APIVersion: 101033
-## AddOnVersion: 1.0.7
+## APIVersion: 101034
+## AddOnVersion: 1.0.8
 ## SavedVariables: CurrencyTracker_SavedVariables
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn:
