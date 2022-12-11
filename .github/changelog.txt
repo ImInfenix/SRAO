@@ -1,0 +1,21 @@
+1.0.10 - Updated to Firesong
+
+1.0.9  - Updated to Lost Depths
+
+1.0.8  - Updated to High Isle
+
+1.0.7  - Updated to Ascending Tide
+
+1.0.6  - Updated to Deadlands
+
+1.0.5  - Updated to Waking Flame
+
+1.0.4  - Updated to Blackwood
+
+1.0.3  - Updated to Flames of Ambition
+
+1.0.2  - Feature: Added Writ Vouchers support
+
+1.0.1  - Bug fix: [Event Tickets] Displayed text wasn't updated on amount update
+
+1.0.0  - Feature: Event tickets tracking

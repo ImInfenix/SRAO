@@ -1,0 +1,12 @@
+This addon aims to help you managing you currencies.
+
+Currently, it warns the player when your event tickets reach a chosen threshold to be sure to spend them on time and not losing some because of it.
+
+It also provide the same type of warning for writ vouchers.
+
+Each information can be disabled through the settings menu.
+
+To use this addon, you need to install dependencies :
+ - [URL="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu-2.0[/URL]
+
+[URL="https://github.com/ImInfenix/CurrencyTracker"]GitHub repository[/URL]
