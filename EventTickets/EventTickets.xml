@@ -25,7 +25,7 @@
           <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="LEFT" offsetX="15"/>
         </Texture>
 
-        <Label name="$(parent)Text" text="12" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_HIGHLIGHT" horizontalAlignment="CENTER" verticalAlignment="CENTER" font="ZoFontGame" resizeToFitDescendents="true">
+        <Label name="$(parent)Text" text="12" color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_HIGHLIGHT" horizontalAlignment="CENTER" verticalAlignment="CENTER" font="ZoFontGame">
             <Anchor point="CENTER" relativeTo="$(parent)Icon" relativePoint="LEFT" offsetX="35"/>
         </Label>
       </Controls>
